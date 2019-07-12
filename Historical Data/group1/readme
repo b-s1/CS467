@@ -1,2 +1,2 @@
 group 1 of data
-variables: Date ,Minimum Temperature,Maximum Temperature,Temperature,Wind Gust,Precipitation
+variables: Date,TMIN,TMAX,TEMP,Wind Gust,Precipitation
