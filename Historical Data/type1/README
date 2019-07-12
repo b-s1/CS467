@@ -1,1 +1,33 @@
 This dataset contains different variables
+
+Dubai: Date,Minimum,Maximum,Average,Precipitation
+
+Paris: Date,Minimum,Maximum,Precipitation
+
+Mumbai: Date time,Minimum Temperature,Maximum Temperature,Temperature,Average,Precipitation
+
+Moscow: DATE,Average,Maximum,Minimum,Precipitation
+
+Lagos: Average
+
+Anchorage: DATE,TMAX,TMIN,WSFG
+
+Tehran: Date,Minimum,Maximum,Temperature
+
+Riyadh: Date,Minimum,Maximum,Temperature,Average 
+-> avg starting 1983
+
+Boston: DATE,Precipitation,SNOW,TMAX,TMIN,Temperature
+
+Seoul: date, average
+
+New Dehli: DATE,PRCP,TAVG,TMAX,TMIN
+
+Jakarta: DATE,TAVG
+
+Nairobi: DATE,PRCP,TAVG,TMAX,TMIN
+
+Kinshasa: DATE,PRCP,TAVG,TMAX,TMIN
+
+Karachi: DATE,PRCP,TAVG,TMAX,TMIN
+
