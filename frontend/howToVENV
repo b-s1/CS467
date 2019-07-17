@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo -e "\nactivate the virtual environment by running the following command in bash:"
+echo -e '". activate"\n'
+echo -e "when you are done with the virtual environment, the command to return is:"
+echo -e '"deactivate"\n'
