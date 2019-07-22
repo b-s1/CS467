@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<h1>Upload City Weather File</h1>
+<h4>Weather CSV should have the following headers:</h4>
+<h5>Date | TMIN | TMAX | TEMP | Wind Gust | Precipitation</h5>
+<h5>Once your file is uploaded, the historical data will be available in the navbar</h5>
+<div class="row">
+   <div class="col-md-4">
+      {{ wtf.quick_form(form) }}
+   </div>
+</div>
+{% endblock %}
