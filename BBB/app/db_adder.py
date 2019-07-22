@@ -33,7 +33,7 @@ def db_add_weather(cityName, filename):
             try:
                 precip = float(row['Precipitation'])
             except:
-                date = None
+                precip = None
             data = Weather(city_id = city.id,
                     date=date,
                     loTemp=loTemp,

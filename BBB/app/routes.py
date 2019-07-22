@@ -22,8 +22,8 @@ def upload():
     form = FileForm()
     if form.validate_on_submit():
         cityName = form.city_name.data
-        if not os.path.exists('city_data'):
-            os.mkdir('city_data')
+        if not os.path.exists('app/city_data'):
+            os.mkdir('app/city_data')
         filename = secure_filename(form.file.data.filename)
         form.file.data.save('app/city_data/' + filename)
         db_add_weather(cityName, filename)
