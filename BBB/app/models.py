@@ -15,6 +15,8 @@ class City(db.Model):
         weather = Weather.query.filter_by(city_id=self.id)
         return weather
 
+   
+
 
 class Weather(db.Model):
     id = db.Column(db.Integer, primary_key=True)
