@@ -15,9 +15,6 @@ class City(db.Model):
         weather = Weather.query.filter_by(city_id=self.id)
         return weather
 
-   
-
-
 class Weather(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     city_id = db.Column(db.Integer, db.ForeignKey('city.id'), nullable=False)
@@ -31,3 +28,14 @@ class Weather(db.Model):
     def __repr__(self):
         weatherString = '<Weather in {} on {}>'
         return weatherString.format(City.query.get(self.city_id).name, self.date.strftime('%Y-%m-%d'))
+
+class GloabalAnnualData(db.Model):
+   year = db.Column(db.Integer, primary_key=True)
+   temp = db.Column(db.Float)
+   precip = db.Column(db.Float)
+   seaLevel = db.Column(db.Float)
+   storm = db.Column(db.Float)
+
+   def __repr__(self):
+      annual = '<{} global average temp: {}, precip: {}, sea level: {}, storms:{}'
+      return annual.format(year, temp + 57, precipi + 990, seaLevel - 1.110236219, storm)
