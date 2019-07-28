@@ -29,13 +29,13 @@ class Weather(db.Model):
         weatherString = '<Weather in {} on {}>'
         return weatherString.format(City.query.get(self.city_id).name, self.date.strftime('%Y-%m-%d'))
 
-class GloabalAnnualData(db.Model):
+class GlobalData(db.Model):
    year = db.Column(db.Integer, primary_key=True)
    temp = db.Column(db.Float)
    precip = db.Column(db.Float)
    seaLevel = db.Column(db.Float)
-   storm = db.Column(db.Float)
+   storms = db.Column(db.Float)
 
    def __repr__(self):
       annual = '<{} global average temp: {}, precip: {}, sea level: {}, storms:{}'
-      return annual.format(year, temp + 57, precipi + 990, seaLevel - 1.110236219, storm)
+      return annual.format(self.year, self.temp, self.precip, self.seaLevel, self.storms)

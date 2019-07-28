@@ -4,7 +4,7 @@ from flask import render_template, flash, redirect, url_for, request, g
 from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import FileForm
-from app.models import City, Weather
+from app.models import City, Weather, GlobalData
 from werkzeug import secure_filename
 from app.db_adder import db_add_weather
 
@@ -41,3 +41,14 @@ def city(cityName):
     prev_url = url_for('city', cityName=cityName, page=weather.prev_num) \
             if weather.has_prev else None
     return render_template('historicalData.html', title='Historical Weather Data for {}'.format(cityName), weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities)
+
+@app.route('/global', methods=['GET', 'POST'])
+def globalData():
+    page = request.args.get('page', 1, type=int)
+    weather = GlobalData.query.paginate(
+            page, app.config['LINES_PER_PAGE'], False)
+    next_url = url_for('globalData', page=weather.next_num) \
+            if weather.has_next else None
+    prev_url = url_for('globalData', page=weather.prev_num) \
+            if weather.has_prev else None
+    return render_template('globalData.html', title='Gloabl Context Weather History', weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities)

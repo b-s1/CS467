@@ -1,0 +1,17 @@
+<tr>
+   <th scope="row">
+      {{ data.year }}:
+   </th>
+   <td>
+      {{ "%.2f"|format(data.temp) }}
+   </td>
+   <td>
+      {{ "%.2f"|format(data.precip) }}
+   </td>
+   <td>
+      {{ "%.2f"|format(data.seaLevel) }}
+   </td>
+   <td>
+      {{ data.storms|int }}
+   </td>
+</tr>

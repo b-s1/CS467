@@ -1,7 +1,7 @@
 from app import app, db
-from app.models import City, Weather
+from app.models import City, Weather, GlobalData
 
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'db': db, 'City': City, 'Weather': Weather}
+    return {'db': db, 'City': City, 'Weather': Weather, 'GlobalData': GlobalData}

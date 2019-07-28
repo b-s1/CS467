@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+   {% if weather %}
+   <table class="table">
+      <thead>
+      <tr>
+         <th scope="col">Year</th>
+         <th scope="col">Average Temp</th>
+         <th scope="col">Average Precipitation</th>
+         <th scope="col">Sea Level vs 1901</th>
+         <th scope="col">Number of Tropical Cyclones</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for data in weather %}
+         {% include '_globalData.html' %}
+      {% endfor %}
+      </tbody>
+   </table>
+   {% endif %}
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span> Older Data
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    Newer Data <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
