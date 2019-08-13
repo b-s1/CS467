@@ -7,6 +7,7 @@ from app.forms import FileForm
 from app.models import City, Weather, GlobalData
 from werkzeug import secure_filename
 from app.db_adder import db_add_weather
+from app.linegraph import create_plot
 
 @app.before_request
 def before_request():
@@ -52,3 +53,8 @@ def globalData():
     prev_url = url_for('globalData', page=weather.prev_num) \
             if weather.has_prev else None
     return render_template('globalData.html', title='Gloabl Context Weather History', weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities)
+
+@app.route('/test/<cityName>')
+def test(cityName):
+    line = create_plot(cityName)
+    return render_template('test.html', plot=line)

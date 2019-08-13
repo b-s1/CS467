@@ -1,8 +1,8 @@
-"""empty message
+"""table reset to add global data
 
-Revision ID: a1b291ccff17
+Revision ID: d445bf322ce4
 Revises: 
-Create Date: 2019-07-27 23:00:21.606746
+Create Date: 2019-07-28 11:54:38.004187
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a1b291ccff17'
+revision = 'd445bf322ce4'
 down_revision = None
 branch_labels = None
 depends_on = None
