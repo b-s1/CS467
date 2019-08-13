@@ -30,6 +30,12 @@
                         </ul>
                     </li>
                     {% endif %}
+                    {% if dataName %}
+                    <li><a href="data/{{ dataName }}">Raw Data for {{ dataName }}</a></li>
+                    {% endif %}
+                    {% if graphName %}
+                    <li><a href="data/{{ graphName }}">Graphical Data for {{ graphName }}</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ url_for('upload') }}">Upload City Weather File</a></li>

@@ -32,7 +32,7 @@ def upload():
         return redirect(url_for('upload'))
     return render_template('upload.html', title='Upload', form=form, cities=g.cities)
 
-@app.route('/city/<cityName>', methods=['GET', 'POST'])
+@app.route('/city/data/<cityName>', methods=['GET', 'POST'])
 def city(cityName):
     city = City.query.filter_by(name=cityName).first_or_404()
     page = request.args.get('page', 1, type=int)
@@ -42,7 +42,7 @@ def city(cityName):
             if weather.has_next else None
     prev_url = url_for('city', cityName=cityName, page=weather.prev_num) \
             if weather.has_prev else None
-    return render_template('historicalData.html', title='Historical Weather Data for {}'.format(cityName), weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities)
+    return render_template('historicalData.html', title='Historical Weather Data for {}'.format(cityName), weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities, graphName=cityName)
 
 @app.route('/global', methods=['GET', 'POST'])
 def globalData():
@@ -55,8 +55,15 @@ def globalData():
             if weather.has_prev else None
     return render_template('globalData.html', title='Gloabl Context Weather History', weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities)
 
-@app.route('/test/<cityName>')
+@app.route('/test/global')
+def testGlobal():
+   return 0
+
+
+
+@app.route('/city/<cityName>')
 def test(cityName):
     annuals = calc_avgs(cityName)
     line = create_plot(annuals)
-    return render_template('test.html', plot=line)
+    title = "Historical Temperature Data for "
+    return render_template('test.html', plot=line, cities=g.cities, title=title + cityName, dataName=cityName)

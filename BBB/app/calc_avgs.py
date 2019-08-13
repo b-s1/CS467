@@ -24,9 +24,9 @@ def calc_avgs(cityName):
                 sums[year][0] += (day.loTemp + Day.hiTemp) / 2
                 sums[year][1] += 1
 
-
     avgs = []
     for year in sums:
-        avgs.append((year, sums[year][0] / sums[year][1]))
+        if sums[year][1] > 200:
+            avgs.append((year, sums[year][0] / sums[year][1]))
 
     return avgs
