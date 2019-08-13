@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from flask import render_template, flash, redirect, url_for, request, g
-from werkzeug.urls import url_parse
+from werkzeug.urls import url_parse, url_unquote
 from app import app, db
 from app.forms import FileForm
 from app.models import City, Weather, GlobalData
@@ -34,6 +34,7 @@ def upload():
 
 @app.route('/city/data/<cityName>', methods=['GET', 'POST'])
 def city(cityName):
+    cityName = url_unquote(cityName)
     city = City.query.filter_by(name=cityName).first_or_404()
     page = request.args.get('page', 1, type=int)
     weather = city.weatherHistory().paginate(
@@ -63,6 +64,7 @@ def testGlobal():
 
 @app.route('/city/<cityName>')
 def test(cityName):
+    cityName = url_unquote(cityName)
     annuals = calc_avgs(cityName)
     line = create_plot(annuals)
     title = "Historical Temperature Data for "
