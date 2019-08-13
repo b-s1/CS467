@@ -22,7 +22,7 @@ def create_plot(avgs):
     data = [
         go.Scatter(
             x=df['x'], # assign x as the dataframe column 'x'
-            y=df['y']
+            y=df['y'],
         )
     ]
 
