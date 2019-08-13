@@ -6,18 +6,21 @@ import pandas as pd
 import numpy as np
 import json
 
-def create_plot(cityName):
 
-    city = City.query.filter_by(name=cityName).first_or_404()
+#takes a list of tuples (year, average) and returns a json dump of the graph data
+def create_plot(avgs):
 
-    N = 40
-    x = np.linspace(0, 1, N)
-    y = np.random.randn(N)
+
+    x = [] 
+    y = []
+    for year in avgs:
+        x.append(year[0])
+        y.append(year[1])
     df = pd.DataFrame({'x': x, 'y': y}) # creating a sample dataframe
 
 
     data = [
-        go.Line(
+        go.Scatter(
             x=df['x'], # assign x as the dataframe column 'x'
             y=df['y']
         )

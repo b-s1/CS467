@@ -8,6 +8,7 @@ from app.models import City, Weather, GlobalData
 from werkzeug import secure_filename
 from app.db_adder import db_add_weather
 from app.linegraph import create_plot
+from app.calc_avgs import calc_avgs
 
 @app.before_request
 def before_request():
@@ -56,5 +57,6 @@ def globalData():
 
 @app.route('/test/<cityName>')
 def test(cityName):
-    line = create_plot(cityName)
+    annuals = calc_avgs(cityName)
+    line = create_plot(annuals)
     return render_template('test.html', plot=line)
