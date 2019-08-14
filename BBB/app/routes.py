@@ -54,7 +54,7 @@ def globalData():
             if weather.has_next else None
     prev_url = url_for('globalData', page=weather.prev_num) \
             if weather.has_prev else None
-    return render_template('globalData.html', title='Gloabl Context Weather History', weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities)
+    return render_template('globalData.html', title='Gloabl Context Weather History', weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities, switch='globalVis')
 
 @app.route('/global')
 def globalVis():
@@ -72,7 +72,7 @@ def globalVis():
     precip = create_plot(precip, "Global Average Precipitation (inches)", 'blue')
     seaLevel = create_plot(seaLevel, "Global Sea Level vs 1901 (inches)", 'cyan')
     storms = create_plot(storms, "Global number of Tropical Cyclones", 'green')
-    return render_template('test.html', plot={temp, precip, seaLevel, storms}, cities=g.cities, title="Global Data")
+    return render_template('test.html', plot={temp, precip, seaLevel, storms}, cities=g.cities, title="Global Data", switch='globalData')
 
 
 
