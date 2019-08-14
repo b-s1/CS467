@@ -45,7 +45,7 @@ def city(cityName):
             if weather.has_prev else None
     return render_template('historicalData.html', title='Historical Weather Data for {}'.format(cityName), weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities, graphName=cityName)
 
-@app.route('/global', methods=['GET', 'POST'])
+@app.route('/global/data', methods=['GET', 'POST'])
 def globalData():
     page = request.args.get('page', 1, type=int)
     weather = GlobalData.query.paginate(
@@ -56,9 +56,23 @@ def globalData():
             if weather.has_prev else None
     return render_template('globalData.html', title='Gloabl Context Weather History', weather=weather.items, next_url=next_url, prev_url=prev_url, cities=g.cities)
 
-@app.route('/test/global')
-def testGlobal():
-   return 0
+@app.route('/global')
+def globalVis():
+    weather = GlobalData.query.all()
+    temp = []
+    precip = []
+    seaLevel = []
+    storms = []
+    for year in weather:
+        temp.append((year.year, year.temp))
+        precip.append((year.year, year.precip))
+        seaLevel.append((year.year, year.seaLevel))
+        storms.append((year.year, year.storms))
+    temp = create_plot(temp, "Global Average Temperature (&deg;F)", 'red')
+    precip = create_plot(precip, "Global Average Precipitation (inches)", 'blue')
+    seaLevel = create_plot(seaLevel, "Global Sea Level vs 1901 (inches)", 'cyan')
+    storms = create_plot(storms, "Global number of Tropical Cyclones", 'green')
+    return render_template('test.html', plot={temp, precip, seaLevel, storms}, cities=g.cities, title="Global Data")
 
 
 
@@ -66,6 +80,6 @@ def testGlobal():
 def test(cityName):
     cityName = url_unquote(cityName)
     annuals = calc_avgs(cityName)
-    line = create_plot(annuals)
+    line = create_plot(annuals, "annual Average Temperature for {}".format(cityName), 'red')
     title = "Historical Temperature Data for "
-    return render_template('test.html', plot=line, cities=g.cities, title=title + cityName, dataName=cityName)
+    return render_template('test.html', plot={line}, cities=g.cities, title=title + cityName, dataName=cityName)

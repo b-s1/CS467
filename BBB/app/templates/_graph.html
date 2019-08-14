@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="chart" id="linegraph{{ loop.index }}">
+            <script>
+                var graphs = {{data | safe}};
+Plotly.plot('linegraph{{ loop.index }}',graphs,{});
+            </script>
+        </div>
+    </div>
+</div>

@@ -8,7 +8,7 @@ import json
 
 
 #takes a list of tuples (year, average) and returns a json dump of the graph data
-def create_plot(avgs):
+def create_plot(avgs, title, color):
 
 
     x = [] 
@@ -23,9 +23,13 @@ def create_plot(avgs):
         go.Scatter(
             x=df['x'], # assign x as the dataframe column 'x'
             y=df['y'],
+            marker=dict(color=color)
         )
     ]
+    
+    layout = dict(title=title)
+    fig = dict(data=data, layout=layout)
 
-    graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
     return graphJSON
