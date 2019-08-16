@@ -80,6 +80,8 @@ def globalVis():
 def test(cityName):
     cityName = url_unquote(cityName)
     annuals = calc_avgs(cityName)
-    line = create_plot(annuals, "annual Average Temperature for {}".format(cityName), 'red')
+    line = create_plot(annuals, "Annual Average Temperature for {}".format(cityName), 'red')
     title = "Historical Temperature Data for "
-    return render_template('test.html', plot={line}, cities=g.cities, title=title + cityName, dataName=cityName)
+    filepath = os.path.join('{}.png'.format(cityName))
+    print(filepath)
+    return render_template('test.html', plot={line}, cities=g.cities, title=title + cityName, dataName=cityName, imgSrc = filepath)

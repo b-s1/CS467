@@ -15,5 +15,44 @@ Plotly.plot('linegraph{{ loop.index }}',graphs,{});
         </div>
     </div>
     {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% if imgSrc %}
+    <h4>Machine Learning Algorithm Predictions</h4>
+    <img src='/static/{{ imgSrc }}' width="90%">
+    <h4>Direct Modeling Algorithm Predictions</h4>
+    <img src='/static/b_{{ imgSrc }}' width="90%">
+    
+    {% endif %}
 </div>
 {% endblock %}

@@ -13,7 +13,10 @@ def db_add_weather(cityName, filename):
             try:
                 date = datetime.strptime(row['Date'], '%m/%d/%Y')
             except:
-                date = None
+                try:
+                    date = datetime.strptime(row['DATE'], '%m/%d/%Y')
+                except:
+                    date = None
             try:
                 loTemp = float(row['TMIN'])
             except:
@@ -25,7 +28,10 @@ def db_add_weather(cityName, filename):
             try:
                 avgTemp = float(row['TEMP'])
             except:
-                avgTemp = None
+                try:
+                    avgTemp = float(row['TEMP'])
+                except:
+                    avgTemp = None
             try:
                 gust = float(row['Wind Gust'])
             except:
